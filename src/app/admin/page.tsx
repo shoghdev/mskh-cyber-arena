@@ -2,8 +2,18 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import {
-  LayoutDashboard, Gamepad2, Users, ListChecks, Scale, Award, BarChart3,
-  LogOut, Loader2, AlertTriangle, SlidersHorizontal, ShieldHalf,
+  LayoutDashboard,
+  Gamepad2,
+  Users,
+  ListChecks,
+  Scale,
+  Award,
+  BarChart3,
+  LogOut,
+  Loader2,
+  AlertTriangle,
+  SlidersHorizontal,
+  ShieldHalf,
 } from "lucide-react";
 import { Backdrop, Btn, Input, Panel } from "@/components/ui";
 import { cn } from "@/lib/utils";
@@ -63,8 +73,12 @@ export default function AdminPage() {
               <ShieldHalf size={20} className="text-amber" />
             </div>
             <div>
-              <div className="font-display text-sm font-bold tracking-widest text-white">ADMIN PANEL</div>
-              <div className="text-[11px] text-slate-500">Կազմակերպչի կառավարում</div>
+              <div className="font-display text-sm font-bold tracking-widest text-white">
+                ADMIN PANEL
+              </div>
+              <div className="text-[11px] text-slate-500">
+                Կազմակերպչի կառավարում
+              </div>
             </div>
           </div>
           <Btn variant="ghost" size="sm" onClick={logout}>
@@ -91,7 +105,9 @@ export default function AdminPage() {
       </header>
 
       <div className="mx-auto max-w-7xl px-4 py-6 pb-20">
-        {tab === "overview" && <OverviewTab onGoControl={() => setTab("control")} />}
+        {tab === "overview" && (
+          <OverviewTab onGoControl={() => setTab("control")} />
+        )}
         {tab === "control" && <ControlTab />}
         {tab === "teams" && <TeamsTab />}
         {tab === "tasks" && <TasksTab />}
@@ -123,7 +139,8 @@ function AdminLogin({ onSuccess }: { onSuccess: () => void }) {
       });
       const json = await res.json();
       if (!res.ok) setError(json.error ?? "Սխալ");
-      else if (json.role !== "admin") setError("Այս հաշիվը ադմինիստրատորի չէ․ օգտագործեք Jury Panel-ը");
+      else if (json.role !== "admin")
+        setError("Այս հաշիվը ադմինիստրատորի չէ․ օգտագործեք Jury Panel-ը");
       else onSuccess();
     } catch {
       setError("Կապի խնդիր․ փորձեք կրկին");
@@ -138,25 +155,49 @@ function AdminLogin({ onSuccess }: { onSuccess: () => void }) {
       <Panel className="w-full max-w-md p-8 animate-pop">
         <div className="flex flex-col items-center text-center">
           <div className="grid place-items-center rounded-2xl border border-amber/40 bg-panel2 p-4">
-            <SlidersHorizontal size={36} className="text-amber" strokeWidth={1.6} />
+            <SlidersHorizontal
+              size={36}
+              className="text-amber"
+              strokeWidth={1.6}
+            />
           </div>
-          <h1 className="mt-6 font-display text-xl font-black tracking-widest text-white">ADMIN PANEL</h1>
+          <h1 className="mt-6 font-display text-xl font-black tracking-widest text-white">
+            ADMIN PANEL
+          </h1>
           <p className="mt-2 text-sm text-slate-400">Կազմակերպչի մուտք</p>
         </div>
         <form onSubmit={submit} className="mt-8 space-y-4">
-          <Input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Մուտքանուն" autoFocus />
-          <Input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Գաղտնաբառ" type="password" />
+          <Input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Մուտքանուն"
+            autoFocus
+          />
+          <Input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Գաղտնաբառ"
+            type="password"
+          />
           {error && (
             <div className="flex items-center gap-2 rounded-xl border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger animate-pop">
               <AlertTriangle size={16} /> {error}
             </div>
           )}
-          <Btn type="submit" size="lg" className="w-full" disabled={busy || !username || !password}>
-            {busy ? <Loader2 size={18} className="animate-spin" /> : <ShieldHalf size={18} />}
+          <Btn
+            type="submit"
+            size="lg"
+            className="w-full"
+            disabled={busy || !username || !password}
+          >
+            {busy ? (
+              <Loader2 size={18} className="animate-spin" />
+            ) : (
+              <ShieldHalf size={18} />
+            )}
             Մուտք գործել
           </Btn>
         </form>
-        <p className="mt-6 text-center text-xs text-slate-500">Ցուցադրական հաշիվ՝ admin / admin123</p>
       </Panel>
     </main>
   );
