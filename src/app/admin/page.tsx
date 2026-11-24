@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 import {
   LayoutDashboard,
@@ -14,6 +15,7 @@ import {
   AlertTriangle,
   SlidersHorizontal,
   ShieldHalf,
+  House,
 } from "lucide-react";
 import { Backdrop, Btn, Input, Panel } from "@/components/ui";
 import { cn } from "@/lib/utils";
@@ -81,9 +83,17 @@ export default function AdminPage() {
               </div>
             </div>
           </div>
-          <Btn variant="ghost" size="sm" onClick={logout}>
-            <LogOut size={14} /> Ելք
-          </Btn>
+          <div className="flex items-center gap-1">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-400 transition-colors hover:bg-panel2/60 hover:text-white"
+            >
+              <House size={14} /> Գլխավոր
+            </Link>
+            <Btn variant="ghost" size="sm" onClick={logout}>
+              <LogOut size={14} /> Ելք
+            </Btn>
+          </div>
         </div>
         <nav className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-4 pb-2">
           {TABS.map((t) => (
@@ -198,6 +208,12 @@ function AdminLogin({ onSuccess }: { onSuccess: () => void }) {
             Մուտք գործել
           </Btn>
         </form>
+        <Link
+          href="/"
+          className="mt-5 inline-flex w-full items-center justify-center gap-2 text-sm text-slate-400 transition-colors hover:text-white"
+        >
+          <House size={14} /> Գլխավոր էջ
+        </Link>
       </Panel>
     </main>
   );
