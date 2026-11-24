@@ -33,10 +33,30 @@ async function main() {
 
   /* Users */
   await db.insert(users).values([
-    { username: "admin", passwordHash: hashPassword("admin123"), name: "Կազմակերպիչ", role: "admin" },
-    { username: "jury1", passwordHash: hashPassword("jury123"), name: "Ժյուրի 1", role: "jury" },
-    { username: "jury2", passwordHash: hashPassword("jury123"), name: "Ժյուրի 2", role: "jury" },
-    { username: "jury3", passwordHash: hashPassword("jury123"), name: "Ժյուրի 3", role: "jury" },
+    {
+      username: "admin",
+      passwordHash: hashPassword("admin123"),
+      name: "Կազմակերպիչ",
+      role: "admin",
+    },
+    {
+      username: "jury1",
+      passwordHash: hashPassword("jury123"),
+      name: "Ժյուրի 1",
+      role: "jury",
+    },
+    {
+      username: "jury2",
+      passwordHash: hashPassword("jury123"),
+      name: "Ժյուրի 2",
+      role: "jury",
+    },
+    {
+      username: "jury3",
+      passwordHash: hashPassword("jury123"),
+      name: "Ժյուրի 3",
+      role: "jury",
+    },
   ]);
 
   /* Schools */
@@ -45,7 +65,11 @@ async function main() {
     .values([
       { name: "Արևելյան դպրոց-պարտեզ", shortCode: "EAST", color: "#22d3ee" },
       { name: "Արևմտյան դպրոց-պարտեզ", shortCode: "WEST", color: "#a78bfa" },
-      { name: "Հյուսիսային դպրոց-պարտեզ", shortCode: "NORTH", color: "#34d399" },
+      {
+        name: "Հյուսիսային դպրոց-պարտեզ",
+        shortCode: "NORTH",
+        color: "#34d399",
+      },
       { name: "Հարավային դպրոց-պարտեզ", shortCode: "SOUTH", color: "#fbbf24" },
     ])
     .returning();
@@ -54,14 +78,62 @@ async function main() {
 
   /* Teams */
   await db.insert(teams).values([
-    { name: "ԿիբեռՀսկիչներ", schoolId: byCode.EAST, grade: "5-րդ", members: "Անդամ 1, Անդամ 2, Անդամ 3", accessCode: "EAST-K7P2" },
-    { name: "Ցանցային Վահան", schoolId: byCode.EAST, grade: "6-րդ", members: "Անդամ 1, Անդամ 2", accessCode: "EAST-M4Q9" },
-    { name: "Ֆայրուոլ Վարպետներ", schoolId: byCode.WEST, grade: "4-րդ", members: "Անդամ 1, Անդամ 2, Անդամ 3", accessCode: "WEST-X3T8" },
-    { name: "Պաշտպան Ռոբոտներ", schoolId: byCode.WEST, grade: "6-րդ", members: "Անդամ 1, Անդամ 2", accessCode: "WEST-B6N5" },
-    { name: "Վտանգի Որսորդներ", schoolId: byCode.NORTH, grade: "5-րդ", members: "Անդամ 1, Անդամ 2, Անդամ 3", accessCode: "NORTH-R9D4" },
-    { name: "Սկաներներ", schoolId: byCode.NORTH, grade: "6-րդ", members: "Անդամ 1, Անդամ 2", accessCode: "NORTH-L2W7" },
-    { name: "Ծածկագիր", schoolId: byCode.SOUTH, grade: "4-րդ", members: "Անդամ 1, Անդամ 2, Անդամ 3", accessCode: "SOUTH-Z8F3" },
-    { name: "Վահան", schoolId: byCode.SOUTH, grade: "5-րդ", members: "Անդամ 1, Անդամ 2", accessCode: "SOUTH-C5H6" },
+    {
+      name: "ԿիբեռՀսկիչներ",
+      schoolId: byCode.EAST,
+      grade: "5-րդ",
+      members: "Անդամ 1, Անդամ 2, Անդամ 3",
+      accessCode: "EAST-K7P2",
+    },
+    {
+      name: "Ցանցային Վահան",
+      schoolId: byCode.EAST,
+      grade: "6-րդ",
+      members: "Անդամ 1, Անդամ 2",
+      accessCode: "EAST-M4Q9",
+    },
+    {
+      name: "Ֆայրուոլ Վարպետներ",
+      schoolId: byCode.WEST,
+      grade: "4-րդ",
+      members: "Անդամ 1, Անդամ 2, Անդամ 3",
+      accessCode: "WEST-X3T8",
+    },
+    {
+      name: "Պաշտպան Ռոբոտներ",
+      schoolId: byCode.WEST,
+      grade: "6-րդ",
+      members: "Անդամ 1, Անդամ 2",
+      accessCode: "WEST-B6N5",
+    },
+    {
+      name: "Վտանգի Որսորդներ",
+      schoolId: byCode.NORTH,
+      grade: "5-րդ",
+      members: "Անդամ 1, Անդամ 2, Անդամ 3",
+      accessCode: "NORTH-R9D4",
+    },
+    {
+      name: "Սկաներներ",
+      schoolId: byCode.NORTH,
+      grade: "6-րդ",
+      members: "Անդամ 1, Անդամ 2",
+      accessCode: "NORTH-L2W7",
+    },
+    {
+      name: "Ծածկագիր",
+      schoolId: byCode.SOUTH,
+      grade: "4-րդ",
+      members: "Անդամ 1, Անդամ 2, Անդամ 3",
+      accessCode: "SOUTH-Z8F3",
+    },
+    {
+      name: "Վահան",
+      schoolId: byCode.SOUTH,
+      grade: "5-րդ",
+      members: "Անդամ 1, Անդամ 2",
+      accessCode: "SOUTH-C5H6",
+    },
   ]);
 
   /* Tournament */
@@ -80,11 +152,40 @@ async function main() {
   const stageRows = await db
     .insert(stages)
     .values([
-      { tournamentId: tournament.id, name: "Ուսումնական տեսանյութ", description: "Թիմերի նախապես պատրաստած 1–2 րոպեանոց տեսանյութերը կիբեռանվտանգության կանոնների մասին։", order: 1 },
-      { tournamentId: tournament.id, name: "«Ո՞վ է ուզում դառնալ կիբեռպաշտպան»", description: "Թիմային վիկտորինա կիբեռանվտանգության թեմաներով։", order: 2 },
-      { tournamentId: tournament.id, name: "«Որսա՛ վտանգը»", description: "Էկրանին ցուցադրված կեղծ նամակներում և հաղորդագրություններում վտանգի հայտնաբերում։", order: 3 },
-      { tournamentId: tournament.id, name: "Թվային խաղի ներկայացում", description: "Scratch-ով կամ այլ գործիքով պատրաստված ուսուցողական խաղերի ներկայացում։", order: 4 },
-      { tournamentId: tournament.id, name: "Սցենարային լուծումներ", description: "Իրական կյանքին մոտ իրավիճակների անվտանգ և հիմնավորված լուծումներ։", order: 5 },
+      {
+        tournamentId: tournament.id,
+        name: "Ուսումնական տեսանյութ",
+        description:
+          "Թիմերի նախապես պատրաստած 1–2 րոպեանոց տեսանյութերը կիբեռանվտանգության կանոնների մասին։",
+        order: 1,
+      },
+      {
+        tournamentId: tournament.id,
+        name: "«Ո՞վ է ուզում դառնալ կիբեռպաշտպան»",
+        description: "Թիմային վիկտորինա կիբեռանվտանգության թեմաներով։",
+        order: 2,
+      },
+      {
+        tournamentId: tournament.id,
+        name: "«Որսա՛ վտանգը»",
+        description:
+          "Էկրանին ցուցադրված կեղծ նամակներում և հաղորդագրություններում վտանգի հայտնաբերում։",
+        order: 3,
+      },
+      {
+        tournamentId: tournament.id,
+        name: "Թվային խաղի ներկայացում",
+        description:
+          "Scratch-ով կամ այլ գործիքով պատրաստված ուսուցողական խաղերի ներկայացում։",
+        order: 4,
+      },
+      {
+        tournamentId: tournament.id,
+        name: "Սցենարային լուծումներ",
+        description:
+          "Իրական կյանքին մոտ իրավիճակների անվտանգ և հիմնավորված լուծումներ։",
+        order: 5,
+      },
     ])
     .returning();
 
@@ -125,10 +226,25 @@ async function main() {
     .returning();
 
   await db.insert(taskOptions).values([
-    { taskId: t2.id, text: "Tr!o#9Lm$2Kp — երկար, տարբեր նշաններով", isCorrect: true, order: 1 },
-    { taskId: t2.id, text: "123456789 — հեշտ է հիշել", isCorrect: false, order: 2 },
+    {
+      taskId: t2.id,
+      text: "Tr!o#9Lm$2Kp — երկար, տարբեր նշաններով",
+      isCorrect: true,
+      order: 1,
+    },
+    {
+      taskId: t2.id,
+      text: "123456789 — հեշտ է հիշել",
+      isCorrect: false,
+      order: 2,
+    },
     { taskId: t2.id, text: "Sunshine2025!", isCorrect: true, order: 3 },
-    { taskId: t2.id, text: "qwerty — ստեղնաշարի հաջորդականություն", isCorrect: false, order: 4 },
+    {
+      taskId: t2.id,
+      text: "qwerty — ստեղնաշարի հաջորդականություն",
+      isCorrect: false,
+      order: 4,
+    },
   ]);
 
   const [t3] = await db
@@ -181,12 +297,32 @@ async function main() {
 
   /* Criteria */
   await db.insert(criteria).values([
-    { taskId: t1.id, name: "Բովանդակություն և թեմայի բացատրություն", maxPoints: 40, order: 1 },
-    { taskId: t1.id, name: "Տեխնիկական որակ և ստեղծագործություն", maxPoints: 30, order: 2 },
+    {
+      taskId: t1.id,
+      name: "Բովանդակություն և թեմայի բացատրություն",
+      maxPoints: 40,
+      order: 1,
+    },
+    {
+      taskId: t1.id,
+      name: "Տեխնիկական որակ և ստեղծագործություն",
+      maxPoints: 30,
+      order: 2,
+    },
     { taskId: t1.id, name: "Թիմային ներկայացում", maxPoints: 30, order: 3 },
     { taskId: t3.id, name: "Վտանգի հայտնաբերում", maxPoints: 60, order: 1 },
-    { taskId: t3.id, name: "Հիմնավորված բացատրություն", maxPoints: 50, order: 2 },
-    { taskId: t3.id, name: "Անվտանգ գործողությունների առաջարկ", maxPoints: 40, order: 3 },
+    {
+      taskId: t3.id,
+      name: "Հիմնավորված բացատրություն",
+      maxPoints: 50,
+      order: 2,
+    },
+    {
+      taskId: t3.id,
+      name: "Անվտանգ գործողությունների առաջարկ",
+      maxPoints: 40,
+      order: 3,
+    },
     { taskId: t4.id, name: "Խաղային մեխանիկա", maxPoints: 35, order: 1 },
     { taskId: t4.id, name: "Ուսուցողական արժեք", maxPoints: 35, order: 2 },
     { taskId: t4.id, name: "Դիզայն և ներկայացում", maxPoints: 30, order: 3 },
@@ -203,9 +339,11 @@ async function main() {
   });
 
   console.log("Seed complete.");
-  console.log("Admin:  admin / admin123");
+  console.log("Admin:  admin / mskhkiber123");
   console.log("Jury:   jury1..jury3 / jury123");
-  console.log("Teams:  EAST-K7P2, EAST-M4Q9, WEST-X3T8, WEST-B6N5, NORTH-R9D4, NORTH-L2W7, SOUTH-Z8F3, SOUTH-C5H6");
+  console.log(
+    "Teams:  EAST-K7P2, EAST-M4Q9, WEST-X3T8, WEST-B6N5, NORTH-R9D4, NORTH-L2W7, SOUTH-Z8F3, SOUTH-C5H6",
+  );
 }
 
 main()
