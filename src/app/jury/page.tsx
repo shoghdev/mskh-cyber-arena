@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import {
   Scale, LogOut, Loader2, AlertTriangle, Send, FileVideo, Gamepad2, HelpCircle,
   Bug, ScrollText, Zap, CheckCircle2, Link2, MessageSquare, UserRound, Inbox,
+  House,
 } from "lucide-react";
 import { Backdrop, Badge, Btn, Input, Panel, Textarea } from "@/components/ui";
 import { cn, TASK_TYPES } from "@/lib/utils";
@@ -112,6 +114,12 @@ function JuryLogin({ onSuccess }: { onSuccess: () => void }) {
             Մուտք գործել
           </Btn>
         </form>
+        <Link
+          href="/"
+          className="mt-5 inline-flex w-full items-center justify-center gap-2 text-sm text-slate-400 transition-colors hover:text-white"
+        >
+          <House size={14} /> Գլխավոր էջ
+        </Link>
         <p className="mt-6 text-center text-xs text-slate-500">Ցուցադրական հաշիվ՝ jury1 / jury123</p>
       </Panel>
     </main>
@@ -174,6 +182,12 @@ function JuryDashboard() {
           </div>
           <div className="flex items-center gap-2">
             <Badge color="mint">{data.stats.myEvaluations}/{data.stats.submissions} գնահատված</Badge>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-400 transition-colors hover:bg-panel2/60 hover:text-white"
+            >
+              <House size={14} /> Գլխավոր
+            </Link>
             <Btn variant="ghost" size="sm" onClick={logout}>
               <LogOut size={14} /> Ելք
             </Btn>
