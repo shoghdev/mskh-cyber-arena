@@ -1,12 +1,28 @@
 "use client";
+import Link from "next/link";
 
-import { useCallback, useEffect, useRef, useState, type ReactNode, type ButtonHTMLAttributes, type InputHTMLAttributes, type TextareaHTMLAttributes } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type ButtonHTMLAttributes,
+  type InputHTMLAttributes,
+  type TextareaHTMLAttributes,
+} from "react";
 import { ShieldHalf } from "lucide-react";
 import { cn, formatMs } from "@/lib/utils";
 
 /* --------------------------------- Brand ---------------------------------- */
 
-export function Brand({ size = "md", subtitle = true }: { size?: "sm" | "md" | "lg"; subtitle?: boolean }) {
+export function Brand({
+  size = "md",
+  subtitle = true,
+}: {
+  size?: "sm" | "md" | "lg";
+  subtitle?: boolean;
+}) {
   const icon = size === "lg" ? 54 : size === "md" ? 38 : 28;
   return (
     <div className="flex items-center gap-3">
@@ -16,23 +32,47 @@ export function Brand({ size = "md", subtitle = true }: { size?: "sm" | "md" | "
           <ShieldHalf size={icon} className="text-cyan" strokeWidth={1.6} />
         </div>
       </div>
-      <div>
-        <div className={cn("font-display font-bold tracking-widest text-white", size === "lg" ? "text-2xl" : size === "md" ? "text-lg" : "text-sm")}>
-          MSKH <span className="text-cyan">CYBER</span> ARENA
+      <Link
+        href="/"
+        className="mt-5 inline-flex w-full items-center justify-center gap-2 text-sm text-slate-400 transition-colors hover:text-white"
+      >
+        <div>
+          <div
+            className={cn(
+              "font-display font-bold tracking-widest text-white",
+              size === "lg"
+                ? "text-2xl"
+                : size === "md"
+                  ? "text-lg"
+                  : "text-sm",
+            )}
+          >
+            MSKH <span className="text-cyan">CYBER</span> ARENA
+          </div>
+          {subtitle && (
+            <div className="text-[11px] uppercase tracking-[0.3em] text-azure/70">
+              Կիբեռպաշտպաններ
+            </div>
+          )}
         </div>
-        {subtitle && (
-          <div className="text-[11px] uppercase tracking-[0.3em] text-azure/70">Կիբեռպաշտպաններ</div>
-        )}
-      </div>
+      </Link>
     </div>
   );
 }
 
 /* --------------------------------- Panels --------------------------------- */
 
-export function Panel({ children, className }: { children: ReactNode; className?: string }) {
+export function Panel({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
-    <div className={cn("panel-glass panel-glow rounded-2xl", className)}>{children}</div>
+    <div className={cn("panel-glass panel-glow rounded-2xl", className)}>
+      {children}
+    </div>
   );
 }
 
@@ -43,15 +83,22 @@ type BtnProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   size?: "sm" | "md" | "lg";
 };
 
-export function Btn({ variant = "primary", size = "md", className, ...props }: BtnProps) {
+export function Btn({
+  variant = "primary",
+  size = "md",
+  className,
+  ...props
+}: BtnProps) {
   const variants: Record<string, string> = {
     primary:
       "bg-gradient-to-r from-cyan/90 to-azure/90 text-void hover:from-cyan hover:to-azure shadow-[0_0_24px_rgba(34,211,238,0.35)]",
     ghost: "",
-    danger: "bg-danger/15 text-danger border border-danger/40 hover:bg-danger/25",
+    danger:
+      "bg-danger/15 text-danger border border-danger/40 hover:bg-danger/25",
     success: "bg-mint/15 text-mint border border-mint/40 hover:bg-mint/25",
     warn: "bg-amber/15 text-amber border border-amber/40 hover:bg-amber/25",
-    ghost2: "border border-line bg-panel2/60 text-slate-300 hover:border-azure/40 hover:text-white",
+    ghost2:
+      "border border-line bg-panel2/60 text-slate-300 hover:border-azure/40 hover:text-white",
   };
   const v = variant === "ghost" ? variants.ghost2 : variants[variant];
   const sizes = {
@@ -98,10 +145,20 @@ export function Textarea(props: TextareaHTMLAttributes<HTMLTextAreaElement>) {
   );
 }
 
-export function Field({ label, children, hint }: { label: string; children: ReactNode; hint?: string }) {
+export function Field({
+  label,
+  children,
+  hint,
+}: {
+  label: string;
+  children: ReactNode;
+  hint?: string;
+}) {
   return (
     <label className="block space-y-1.5">
-      <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">{label}</span>
+      <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+        {label}
+      </span>
       {children}
       {hint && <span className="block text-[11px] text-slate-500">{hint}</span>}
     </label>
@@ -110,7 +167,15 @@ export function Field({ label, children, hint }: { label: string; children: Reac
 
 /* --------------------------------- Badge ---------------------------------- */
 
-export function Badge({ children, color = "cyan", className }: { children: ReactNode; color?: string; className?: string }) {
+export function Badge({
+  children,
+  color = "cyan",
+  className,
+}: {
+  children: ReactNode;
+  color?: string;
+  className?: string;
+}) {
   const colors: Record<string, string> = {
     cyan: "border-cyan/40 bg-cyan/10 text-cyan",
     violet: "border-violet/40 bg-violet/10 text-violet",
@@ -120,7 +185,13 @@ export function Badge({ children, color = "cyan", className }: { children: React
     slate: "border-line bg-panel2/60 text-slate-400",
   };
   return (
-    <span className={cn("inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold", colors[color] ?? colors.slate, className)}>
+    <span
+      className={cn(
+        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold",
+        colors[color] ?? colors.slate,
+        className,
+      )}
+    >
       {children}
     </span>
   );
@@ -171,7 +242,10 @@ export type TimerInfo = {
   remainingMs: number;
 };
 
-export function useRemainingMs(timer: TimerInfo | null | undefined, offsetRef: React.RefObject<number>) {
+export function useRemainingMs(
+  timer: TimerInfo | null | undefined,
+  offsetRef: React.RefObject<number>,
+) {
   const [ms, setMs] = useState(timer?.remainingMs ?? 0);
   useEffect(() => {
     const tick = () => {
@@ -189,25 +263,55 @@ export function useRemainingMs(timer: TimerInfo | null | undefined, offsetRef: R
   return ms;
 }
 
-export function TimerDigits({ ms, className }: { ms: number; className?: string }) {
+export function TimerDigits({
+  ms,
+  className,
+}: {
+  ms: number;
+  className?: string;
+}) {
   const danger = ms <= 30000 && ms > 0;
   return (
-    <span className={cn("font-display font-bold tabular-nums tracking-wider", danger ? "text-danger" : "text-white", className)}>
+    <span
+      className={cn(
+        "font-display font-bold tabular-nums tracking-wider",
+        danger ? "text-danger" : "text-white",
+        className,
+      )}
+    >
       {formatMs(ms)}
     </span>
   );
 }
 
-export function TimerRing({ ms, durationSec, size = 180 }: { ms: number; durationSec: number; size?: number }) {
+export function TimerRing({
+  ms,
+  durationSec,
+  size = 180,
+}: {
+  ms: number;
+  durationSec: number;
+  size?: number;
+}) {
   const total = Math.max(1, durationSec * 1000);
   const ratio = Math.max(0, Math.min(1, ms / total));
   const r = (size - 14) / 2;
   const circ = 2 * Math.PI * r;
   const danger = ratio <= 0.2;
   return (
-    <div className="relative grid place-items-center" style={{ width: size, height: size }}>
+    <div
+      className="relative grid place-items-center"
+      style={{ width: size, height: size }}
+    >
       <svg width={size} height={size} className="-rotate-90">
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#132038" strokeWidth="9" />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={r}
+          fill="none"
+          stroke="#132038"
+          strokeWidth="9"
+        />
         <circle
           cx={size / 2}
           cy={size / 2}
